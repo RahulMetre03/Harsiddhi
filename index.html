@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsiddhi Dairy – Jamnagar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Nunito:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --saffron: #E8860A;
+            --saffron-light: #FDF3E3;
+            --saffron-mid: #F5C47A;
+            --terracotta: #C0522A;
+            --cream: #FEF9F0;
+            --warm-white: #FFFDF8;
+            --text-dark: #2C1A0E;
+            --text-mid: #5C3D1E;
+            --text-muted: #9A7555;
+            --border: #EDD9B4;
+            --green-accent: #4A7C3F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* NAV */
+        nav {
+            background: var(--warm-white);
+            border-bottom: 1.5px solid var(--border);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--terracotta);
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-logo span {
+            display: block;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.25rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            color: var(--text-mid);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--saffron-light);
+            color: var(--saffron);
+        }
+
+        .nav-links a.active {
+            color: var(--terracotta);
+        }
+
+        /* DIVIDER */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2.5rem 0;
+            color: var(--saffron-mid);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .divider-icon {
+            font-size: 1.1rem;
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--warm-white);
+            border-bottom: 1.5px solid var(--border);
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(232, 134, 10, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--saffron);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--terracotta);
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--saffron-light);
+            border: 1px solid var(--border);
+            color: var(--text-mid);
+            font-size: 0.8rem;
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        /* CATEGORIES GRID */
+        .section {
+            padding: 3.5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--terracotta);
+            margin-bottom: 0.4rem;
+        }
+
+        .section-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .cat-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+            display: block;
+        }
+
+        .cat-card:hover {
+            border-color: var(--saffron-mid);
+            box-shadow: 0 4px 18px rgba(232, 134, 10, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .cat-card img {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.75rem;
+            border: 2px solid var(--border);
+        }
+
+        .cat-card-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .cat-card-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ABOUT STRIP */
+        .about-strip {
+            background: var(--saffron-light);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .about-strip h2 {
+            font-size: 1.6rem;
+            color: var(--terracotta);
+            margin-bottom: 0.75rem;
+        }
+
+        .about-strip p {
+            color: var(--text-mid);
+            max-width: 560px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* OWNER */
+        .owner-section {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .owner-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--saffron-light);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--terracotta);
+            flex-shrink: 0;
+        }
+
+        .owner-info h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .owner-info p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .owner-info .placeholder-note {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: #FFF5D6;
+            border: 1px dashed var(--saffron-mid);
+            color: var(--text-mid);
+            font-size: 0.78rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+        }
+
+        /* CONTACT & MAP */
+        .contact-map-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 680px) {
+            .contact-map-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .map-box {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 260px;
+            border: none;
+            display: block;
+        }
+
+        .map-info {
+            padding: 1rem 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .map-info p {
+            font-size: 0.875rem;
+            color: var(--text-mid);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-link {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--saffron);
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--saffron-mid);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+
+        .map-link:hover {
+            background: var(--saffron-light);
+        }
+
+        /* FORM */
+        .contact-form-box {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .contact-form-box h3 {
+            font-size: 1.1rem;
+            color: var(--terracotta);
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-mid);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.6rem 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--cream);
+            color: var(--text-dark);
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--saffron);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--terracotta);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #a8431e;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--warm-white);
+            border-top: 1.5px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        footer strong {
+            color: var(--terracotta);
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* PAGE specific */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a class="nav-logo" href="#" onclick="showPage('home')">
+            Harsiddhi Dairy
+            <span>Jamnagar, Gujarat</span>
+        </a>
+        <div class="nav-links">
+            <a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a>
+            <a href="#" onclick="showPage('farsan')" id="nav-farsan">Farsan</a>
+            <a href="#" onclick="showPage('sweets')" id="nav-sweets">Sweets</a>
+            <a href="#" onclick="showPage('dairy')" id="nav-dairy">Dairy & Drinks</a>
+            <a href="#" onclick="showPage('snacks')" id="nav-snacks">Snacks & More</a>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page active">
+
+        <div class="hero">
+            <div class="hero-label">Est. in Jamnagar</div>
+            <h1>Harsiddhi Dairy</h1>
+            <p class="hero-sub">Fresh dairy, traditional farsan, home-style sweets and festive specials — rooted in the
+                flavours of Gujarat.</p>
+            <div class="hero-badges">
+                <span class="badge">Fresh Every Day</span>
+                <span class="badge">Traditional Recipes</span>
+                <span class="badge">Festival Specials</span>
+                <span class="badge">Jamnagar, Gujarat</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Our Categories</h2>
+            <p class="section-sub">From morning dairy to festive sweets — everything made with care.</p>
+
+            <div class="categories-grid">
+                <a class="cat-card" href="#" onclick="showPage('farsan')">
+                    <img src="farsan.jfif" alt="Farsan">
+                    <div class="cat-card-name">Farsan Items</div>
+                    <div class="cat-card-count">18 items</div>
+                </a>
+                <a class="cat-card" href="#" onclick="showPage('sweets')">
+                    <img src="gujaratsweet.jfif" alt="Sweets">
+                    <div class="cat-card-name">Gujarati Sweets</div>
+                    <div class="cat-card-count">14 items</div>
+                </a>
+                <a class="cat-card" href="#" onclick="showPage('dairy')">
+                    <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=150&h=150&fit=crop"
+                        alt="Dairy">
+                    <div class="cat-card-name">Dairy Products</div>
+                    <div class="cat-card-count">10 items</div>
+                </a>
+                <a class="cat-card" href="#" onclick="showPage('dairy')">
+                    <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=150&h=150&fit=crop"
+                        alt="Beverages">
+                    <div class="cat-card-name">Beverages</div>
+                    <div class="cat-card-count">6 items</div>
+                </a>
+                <a class="cat-card" href="#" onclick="showPage('snacks')">
+                    <img src="Gujarati-Mixture-Namkeen.jpg" alt="Namkeen">
+                    <div class="cat-card-name">Namkeen & Snacks</div>
+                    <div class="cat-card-count">7 items</div>
+                </a>
+                <a class="cat-card" href="#" onclick="showPage('snacks')">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=150&h=150&fit=crop"
+                        alt="Bakery">
+                    <div class="cat-card-name">Bakery</div>
+                    <div class="cat-card-count">6 items</div>
+                </a>
+                <a class="cat-card" href="#" onclick="showPage('snacks')">
+                    <img src="Best_Indian_Diwali_Sweets_Desserts_food.jpg" alt="Festival">
+                    <div class="cat-card-name">Festival Specials</div>
+                    <div class="cat-card-count">Seasonal</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="about-strip">
+            <h2>A Taste of Home</h2>
+            <p>Harsiddhi Dairy has been serving the people of Jamnagar with fresh, wholesome dairy products and
+                traditional Gujarati farsan and sweets. Made daily with care, every item carries the warmth of a home
+                kitchen.</p>
+        </div>
+
+        <!-- OWNER -->
+        <div class="section">
+            <h2 class="section-title">Meet the Owner</h2>
+            <p class="section-sub">The family behind every fresh batch.</p>
+            <div class="owner-section">
+                <div class="owner-avatar">MG</div>
+                <div class="owner-info">
+                    <h3>Mayur Gokani</h3>
+                    <p>Harsiddhi Dairy, Jamnagar</p>
+                    <p style="margin-top:0.4rem; font-size:0.875rem; color: var(--text-muted);">Phone: +91 8160606977
+                    </p>
+                    <span class="placeholder-note">Owner details to be filled in</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT & MAP -->
+        <div class="section" style="padding-top: 0;">
+            <h2 class="section-title">Find Us & Get in Touch</h2>
+            <p class="section-sub">We would love to hear from you.</p>
+
+            <div class="contact-map-grid">
+                <!-- MAP -->
+                <div class="map-box">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.0!2d70.0670289!3d22.4893487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395741e87006a3b5%3A0xd4df13494b93ccd!2sHarsiddhi%20Dairy%20And%20Sweet!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Harsiddhi Dairy location on Google Maps">
+                    </iframe>
+                    <div class="map-info">
+                        <p>Harsiddhi Dairy, Jamnagar, Gujarat</p>
+                        <a class="map-link" href="https://maps.app.goo.gl/QmnGhx6BDYxhSimq9" target="_blank"
+                            rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- FORM -->
+                <div class="contact-form-box">
+                    <h3>Send us a message</h3>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Ramesh Patel" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone / WhatsApp</label>
+                        <input type="tel" placeholder="+91 98765 43210" />
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Enquiry, bulk order, feedback..."></textarea>
+                    </div>
+                    <button class="btn-submit" onclick="handleFormSubmit()">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END HOME -->
+
+    <!-- FARSAN PAGE -->
+    <div id="page-farsan" class="page">
+        <div class="hero" style="padding: 3rem 2rem 2.5rem;">
+            <div class="hero-label">Traditional Gujarati</div>
+            <h1>Farsan Items</h1>
+            <p class="hero-sub">Crispy, savoury and freshly made — our farsan selection is a Gujarati staple.</p>
+        </div>
+        <div class="section" id="farsan-grid"></div>
+    </div>
+
+    <!-- SWEETS PAGE -->
+    <div id="page-sweets" class="page">
+        <div class="hero" style="padding: 3rem 2rem 2.5rem;">
+            <div class="hero-label">Mithai</div>
+            <h1>Gujarati Sweets</h1>
+            <p class="hero-sub">Rich, indulgent sweets crafted with tradition — perfect for every occasion.</p>
+        </div>
+        <div class="section" id="sweets-grid"></div>
+    </div>
+
+    <!-- DAIRY & BEVERAGES PAGE -->
+    <div id="page-dairy" class="page">
+        <div class="hero" style="padding: 3rem 2rem 2.5rem;">
+            <div class="hero-label">Farm Fresh</div>
+            <h1>Dairy & Beverages</h1>
+            <p class="hero-sub">Pure milk, creamy paneer, refreshing chaas and more — fresh every morning.</p>
+        </div>
+        <div class="section" id="dairy-grid"></div>
+    </div>
+
+    <!-- SNACKS, BAKERY & FESTIVAL -->
+    <div id="page-snacks" class="page">
+        <div class="hero" style="padding: 3rem 2rem 2.5rem;">
+            <div class="hero-label">Everyday & Festive</div>
+            <h1>Snacks, Bakery & Festival</h1>
+            <p class="hero-sub">From daily bread to Diwali specials — we have your celebrations covered.</p>
+        </div>
+        <div class="section" id="snacks-grid"></div>
+    </div>
+
+    <footer>
+        <strong>Harsiddhi Dairy</strong> &nbsp;&middot;&nbsp; Jamnagar, Gujarat &nbsp;&middot;&nbsp; Freshness you can
+        taste
+        <br><br>
+        <span style="font-size:0.75rem;">&copy; 2025 Harsiddhi Dairy. All rights reserved.</span>
+    </footer>
+
+    <style>
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .item-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .item-card:hover {
+            box-shadow: 0 6px 24px rgba(232, 134, 10, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .item-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item-card-body {
+            padding: 0.85rem 1rem;
+        }
+
+        .item-card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .item-card-tag {
+            font-size: 0.72rem;
+            color: var(--saffron);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .subsection-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--terracotta);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .subsection-title:first-child {
+            margin-top: 0;
+        }
+
+        .success-toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #4A7C3F;
+            color: #fff;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+        }
+
+        .success-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <div class="success-toast" id="toast">Message sent! We will get back to you.</div>
+
+    <script>
+        const FARSAN_ITEMS = [
+            { name: "Khaman", tag: "Steamed", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=280&fit=crop" },
+            { name: "Dhokla", tag: "Steamed", img: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&h=280&fit=crop" },
+            { name: "Nylon Khaman", tag: "Soft & Spongy", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=280&fit=crop&sat=-20" },
+            { name: "Fafda", tag: "Crispy", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=280&fit=crop" },
+            { name: "Gathiya", tag: "Classic", img: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=400&h=280&fit=crop" },
+            { name: "Sev", tag: "Fine & Crispy", img: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=400&h=280&fit=crop&hue=30" },
+            { name: "Bhavnagari Gathiya", tag: "Bhavnagar Style", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=280&fit=crop&sat=10" },
+            { name: "Ratlami Sev", tag: "Spicy", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=280&fit=crop&hue=60" },
+            { name: "Papdi", tag: "Crunchy Wafer", img: "https://images.unsplash.com/photo-1626201849934-8d359c4b74a5?w=400&h=280&fit=crop" },
+            { name: "Chorafali", tag: "Light & Crispy", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=280&fit=crop&brightness=1.1" },
+            { name: "Mathiya", tag: "Sesame Crisps", img: "https://images.unsplash.com/photo-1626201849934-8d359c4b74a5?w=400&h=280&fit=crop&sat=-10" },
+            { name: "Khakhra", tag: "Thin & Toasted", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=280&fit=crop" },
+            { name: "Thepla", tag: "Soft Flatbread", img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=280&fit=crop" },
+            { name: "Handvo", tag: "Baked Savoury Cake", img: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&h=280&fit=crop&sat=10" },
+            { name: "Patra / Alu Vadi", tag: "Colocasia Rolls", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=280&fit=crop&brightness=0.9" },
+            { name: "Lilva Kachori", tag: "Green Pea Filling", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=280&fit=crop&hue=40" },
+            { name: "Samosa", tag: "Fried & Crispy", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=280&fit=crop&hue=80" },
+            { name: "Dal Vada", tag: "Lentil Fritters", img: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&h=280&fit=crop&sat=-5" },
+        ];
+
+        const SWEETS_ITEMS = [
+            { name: "Mohanthal", tag: "Besan Fudge", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=280&fit=crop" },
+            { name: "Suterfeni", tag: "Delicate & Flaky", img: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=280&fit=crop" },
+            { name: "Basundi", tag: "Thickened Milk", img: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=280&fit=crop" },
+            { name: "Shrikhand", tag: "Strained Yoghurt", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=280&fit=crop" },
+            { name: "Mango Shrikhand", tag: "Seasonal Favourite", img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&h=280&fit=crop" },
+            { name: "Penda", tag: "Milk Sweet", img: "https://images.unsplash.com/photo-1605197161470-5e878a65e1d5?w=400&h=280&fit=crop" },
+            { name: "Kaju Katli", tag: "Cashew Barfi", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=280&fit=crop" },
+            { name: "Dry Fruit Barfi", tag: "Rich & Festive", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=280&fit=crop&sat=20" },
+            { name: "Adadiya Pak", tag: "Winter Energizer", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=280&fit=crop&hue=180" },
+            { name: "Magaj", tag: "Semolina Sweet", img: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=280&fit=crop&sat=10" },
+            { name: "Ghughra", tag: "Sweet Dumpling", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=280&fit=crop&hue=200" },
+            { name: "Gulab Jamun", tag: "Rose Syrup", img: "https://images.unsplash.com/photo-1605197161470-5e878a65e1d5?w=400&h=280&fit=crop&sat=30" },
+            { name: "Jalebi", tag: "Crispy & Syrupy", img: "https://images.unsplash.com/photo-1624300629298-e9de39c13be5?w=400&h=280&fit=crop" },
+            { name: "Mesub", tag: "Dry Fruit Sweet", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=280&fit=crop&sat=15" },
+        ];
+
+        const DAIRY_ITEMS = [
+            { name: "Milk", tag: "Fresh Daily", img: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=280&fit=crop" },
+            { name: "Curd / Dahi", tag: "Set Fresh", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=280&fit=crop" },
+            { name: "Chaas", tag: "Buttermilk", img: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&h=280&fit=crop" },
+            { name: "Lassi", tag: "Sweet or Salted", img: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&h=280&fit=crop&sat=20" },
+            { name: "Paneer", tag: "Home Style", img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=280&fit=crop" },
+            { name: "Butter", tag: "White Butter", img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&h=280&fit=crop" },
+            { name: "Ghee", tag: "Pure Desi Ghee", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=280&fit=crop&hue=280" },
+            { name: "Malai", tag: "Fresh Cream", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=280&fit=crop&sat=5" },
+            { name: "Rabdi", tag: "Rich Thickened Milk", img: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=280&fit=crop&sat=5" },
+            { name: "Mawa / Khoya", tag: "Evaporated Milk", img: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=280&fit=crop&sat=-10" },
+        ];
+
+        const BEVERAGE_ITEMS = [
+            { name: "Masala Chaas", tag: "Spiced Buttermilk", img: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&h=280&fit=crop&hue=10" },
+            { name: "Cold Cocoa", tag: "Chilled Delight", img: "https://images.unsplash.com/photo-1542990253-a781e34a2f90?w=400&h=280&fit=crop" },
+            { name: "Falooda", tag: "Rose & Basil", img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&h=280&fit=crop&sat=30" },
+            { name: "Kulfi", tag: "Traditional Ice Cream", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=280&fit=crop&hue=20" },
+            { name: "Ice Cream", tag: "Assorted Flavours", img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=400&h=280&fit=crop" },
+        ];
+
+        const NAMKEEN_ITEMS = [
+            { name: "Chivda", tag: "Rice Flake Mix", img: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=400&h=280&fit=crop&sat=10" },
+            { name: "Mixture", tag: "Assorted Crunch", img: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=400&h=280&fit=crop" },
+            { name: "Peanut Chikki", tag: "Jaggery Brittle", img: "https://images.unsplash.com/photo-1626201849934-8d359c4b74a5?w=400&h=280&fit=crop" },
+            { name: "Dry Fruit Chikki", tag: "Premium Brittle", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=280&fit=crop" },
+            { name: "Banana Wafers", tag: "Crispy Chips", img: "https://images.unsplash.com/photo-1613710938563-4c81c0b9e558?w=400&h=280&fit=crop" },
+            { name: "Masala Peanuts", tag: "Spiced Groundnuts", img: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=400&h=280&fit=crop&hue=40" },
+            { name: "Roasted Snacks", tag: "Light & Healthy", img: "https://images.unsplash.com/photo-1626201849934-8d359c4b74a5?w=400&h=280&fit=crop&sat=-10" },
+        ];
+
+        const BAKERY_ITEMS = [
+            { name: "Pav", tag: "Soft Rolls", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=280&fit=crop" },
+            { name: "Bread", tag: "Daily Fresh", img: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=400&h=280&fit=crop" },
+            { name: "Buns", tag: "Plain & Sweet", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=280&fit=crop&sat=5" },
+            { name: "Rusk", tag: "Twice Baked", img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=280&fit=crop" },
+            { name: "Biscuits", tag: "Assorted", img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=280&fit=crop&sat=10" },
+            { name: "Toast", tag: "Crispy Slices", img: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=400&h=280&fit=crop&sat=5" },
+        ];
+
+        const FESTIVAL_ITEMS = [
+            { name: "Undhiyu", tag: "Winter Special", img: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&h=280&fit=crop&sat=20" },
+            { name: "Puran Poli", tag: "Sweet Flatbread", img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=280&fit=crop&hue=10" },
+            { name: "Modak", tag: "Ganesh Chaturthi", img: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=280&fit=crop&hue=20" },
+            { name: "Ghari", tag: "Surat Specialty", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=280&fit=crop&hue=30" },
+            { name: "Dry Fruit Boxes", tag: "Premium Gifting", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=280&fit=crop&sat=15" },
+            { name: "Diwali Farsan Boxes", tag: "Festive Assortment", img: "https://images.unsplash.com/photo-1605197161470-5e878a65e1d5?w=400&h=280&fit=crop" },
+        ];
+
+        function buildGrid(items) {
+            return `<div class="items-grid">` + items.map(i => `
+    <div class="item-card">
+      <img src="${i.img}" alt="${i.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1567337710282-00832b415979?w=400&h=280&fit=crop'">
+      <div class="item-card-body">
+        <div class="item-card-name">${i.name}</div>
+        <div class="item-card-tag">${i.tag}</div>
+      </div>
+    </div>`).join('') + `</div>`;
+        }
+
+        function buildSectionedGrid(sections) {
+            return sections.map(s =>
+                `<div class="subsection-title">${s.title}</div>` + buildGrid(s.items)
+            ).join('');
+        }
+
+        document.getElementById('farsan-grid').innerHTML = buildGrid(FARSAN_ITEMS);
+
+        document.getElementById('sweets-grid').innerHTML = buildGrid(SWEETS_ITEMS);
+
+        document.getElementById('dairy-grid').innerHTML = buildSectionedGrid([
+            { title: "Dairy Products", items: DAIRY_ITEMS },
+            { title: "Beverages", items: BEVERAGE_ITEMS },
+        ]);
+
+        document.getElementById('snacks-grid').innerHTML = buildSectionedGrid([
+            { title: "Namkeen & Packaged Snacks", items: NAMKEEN_ITEMS },
+            { title: "Bakery / Daily Use", items: BAKERY_ITEMS },
+            { title: "Festival Specials", items: FESTIVAL_ITEMS },
+        ]);
+
+        function showPage(name) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + name).classList.add('active');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            document.getElementById('nav-' + name).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return false;
+        }
+
+        function handleFormSubmit() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+    </script>
+</body>
+
+</html>
